@@ -1,0 +1,393 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+    color: #333;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+header h2 {
+    font-size: 2.8em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+nav a {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1.1em;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.9);
+    color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+section {
+    background: white;
+    margin: 30px 0;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-top: 5px solid #667eea;
+}
+
+h2 {
+    color: #4a5568;
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+h3 {
+    color: #2d3748;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.servicio-item {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.servicio-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+.servicio-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+    border-color: #667eea;
+}
+
+.servicio-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.btn-pedido,
+button,
+.btn-whatsapp,
+.btn-telefono {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    color: white;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    max-width: 320px;
+    margin: 15px auto;
+    display: block;
+    box-shadow: 0 6px 20px rgba(72, 187, 120, 0.3);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-pedido:hover,
+button:hover {
+    background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(72, 187, 120, 0.4);
+}
+
+.pedidos-opciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.opcion-pedido {
+    background: white;
+    padding: 40px 25px;
+    border-radius: 20px;
+    text-align: center;
+    border: 2px solid #e2e8f0;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.opcion-pedido:hover {
+    border-color: #667eea;
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
+}
+
+.opcion-pedido h3 {
+    color: #667eea;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 18px;
+    margin: 10px 0 25px 0;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 16px;
+    background: #f7fafc;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    background: white;
+}
+
+label {
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 1.1em;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.seccion-funcional {
+    display: none;
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    padding: 45px;
+    margin: 40px 0;
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    border-top: 6px solid #48bb78;
+}
+
+.seccion-funcional.activo {
+    display: block;
+}
+
+#resultadoPresupuesto {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    font-size: 1.6em;
+    font-weight: bold;
+    text-align: center;
+    margin: 25px 0;
+    box-shadow: 0 8px 25px rgba(72, 187, 120, 0.3);
+}
+
+.info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+}
+
+.columna {
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-top: 5px solid #f6ad55;
+    transition: transform 0.3s ease;
+}
+
+.columna:hover {
+    transform: translateY(-5px);
+}
+
+.columna h3 {
+    color: #f6ad55;
+    font-size: 1.6em;
+    margin-bottom: 20px;
+}
+
+.columna img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.columna p {
+    font-size: 1.1em;
+    color: #4a5568;
+    line-height: 1.6;
+}
+
+.info-pago {
+    background: linear-gradient(135deg, #fef5e7 0%, #fad7a8 100%);
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 6px solid #f6ad55;
+    margin: 30px 0;
+    box-shadow: 0 5px 20px rgba(246, 173, 85, 0.2);
+}
+
+.info-pago strong {
+    color: #c05621;
+}
+
+.contacto-rapido {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+.btn-whatsapp {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%) !important;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3) !important;
+}
+
+.btn-telefono {
+    background: linear-gradient(135deg, #f6ad55 0%, #ed8936 100%) !important;
+    box-shadow: 0 6px 20px rgba(246, 173, 85, 0.3) !important;
+}
+
+small {
+    color: #718096;
+    font-size: 0.9em;
+    display: block;
+    margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        padding: 15px 10px;
+    }
+
+    header h2 {
+        font-size: 2.2em;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav a {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    section {
+        padding: 25px 20px;
+        margin: 20px 0;
+    }
+
+    .pedidos-opciones,
+    .info {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .servicios-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 30px 15px;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    .columna img {
+        height: 200px;
+    }
+
+    .seccion-funcional {
+        padding: 30px 20px;
+    }
+}
+
+* {
+    scroll-behavior: smooth;
+}
