@@ -34,16 +34,43 @@
 
     const SUPABASE_URL = 'https://sggppmordbmhyixjvzul.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_1ngye4eaAyeYlmJC-Qw1sg_RmbjgAg0';
-    
     async function enviarPedido() {
-      const pedido = {
-        nombre: document.getElementById('nombre').value,
-        telefono: document.getElementById('telefono').value,
-        email: document.getElementById('email').value || null,
-        servicio: document.getElementById('servicio').value,
-        descripcion: document.getElementById('descripcion').value,
-        cantidad: parseInt(document.getElementById('cantidad').value) || 1
-      }
+  alert('🔍 DEBUG: Enviando...');
+  
+  const pedido = {
+    nombre: document.getElementById('nombre').value,
+    telefono: document.getElementById('telefono').value,
+    servicio: document.getElementById('servicio').value
+  }
+  
+  alert('📤 Datos: ' + JSON.stringify(pedido));
+  
+  try {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/pedidos`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`
+      },
+      body: JSON.stringify([pedido])
+    })
+    
+    console.log('Response:', response.status, response.statusText);
+    alert('✅ Status: ' + response.status);
+    
+    if (response.ok) {
+      alert('🎉 GUARDADO!');
+      document.getElementById('formPedido').reset();
+      cerrarSecciones();
+    } else {
+      const errorText = await response.text();
+      alert('❌ ERROR ' + response.status + ': ' + errorText);
+    }
+  } catch (error) {
+    alert('💥 ERROR CONEXIÓN: ' + error.message);
+  }
+}
 
       try {
         const response = await fetch(`${SUPABASE_URL}/rest/v1/pedidos`, {
