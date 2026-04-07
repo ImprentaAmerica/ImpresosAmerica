@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IMPRESOS AMÉRICA</title>
+    <link rel="stylesheet" href="estilo.css">
+
+    <style>
+        /* ESTILOS BASE RESPONSIVE */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        /* HEADER RESPONSIVE */
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h2 {
+            color: #007bff;
+            margin-bottom: 15px;
+            font-size: clamp(1.5em, 5vw, 2.5em);
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        nav a {
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #333;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: #007bff;
+            color: white;
+        }
+
+        /* SECCIONES */
+        section {
+            margin: 30px 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: clamp(1.8em, 6vw, 2.5em);
+        }
+
+        /* GRID SERVICIOS RESPONSIVE */
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .servicio-item {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .servicio-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        /* BOTONES MEJORADOS */
+        .btn-pedido,
+        button {
+            background: #007bff;
+            color: white;
+            padding: clamp(12px, 4vw, 15px) clamp(20px, 6vw, 30px);
+            border: none;
+            border-radius: 8px;
+            font-size: clamp(1em, 4vw, 1.1em);
+            cursor: pointer;
+            width: 100%;
+            max-width: 300px;
+            margin: 10px auto;
+            display: block;
+        }
+
+        .btn-pedido:hover,
+        button:hover {
+            background: #0056b3;
+        }
+
+        /* PEDIDOS OPCIONES */
+        .pedidos-opciones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .opcion-pedido {
+            text-align: center;
+            padding: 30px;
+            border: 2px solid #007bff;
+            border-radius: 15px;
+            background: white;
+        }
+
+        /* FORMULARIOS RESPONSIVE */
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            /* Evita zoom en iOS */
+        }
+
+        /* SECCIONES FUNCIONALES */
+        .seccion-funcional {
+            display: none;
+            background: #f9f9f9;
+            padding: clamp(20px, 5vw, 30px);
+            margin: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .seccion-funcional.activo {
+            display: block;
+        }
+
+        .info-pago {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #ffc107;
+            margin-top: 25px;
+            font-size: clamp(0.9em, 3vw, 1.05em);
+        }
+
+        /* INFO CONTACTO */
+        .info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .columna img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* WHATSAPP Y TELEFONO */
+        .contacto-rapido {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn-whatsapp,
+        .btn-telefono {
+            padding: 15px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            display: inline-block;
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .btn-telefono {
+            background: #007bff;
+            color: white;
+        }
+
+        /* MEDIA QUERIES ADICIONALES */
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+
+            nav {
+                flex-direction: column;
+            }
+
+            nav a {
+                margin: 2px 0;
+            }
+
+            .pedidos-opciones {
+                grid-template-columns: 1fr;
+            }
+
+            .info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 15px 10px;
+            }
+
+            .servicios-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- CONTENIDO IGUAL, SOLO CORREGÍ RUTAS DE IMÁGENES -->
+    <header>
+        <h2>IMPRESOS AMÉRICA</h2>
+        <nav>
+            <a href="#inicio">INICIO</a>
+            <a href="#acerca">ACERCA DE</a>
+            <a href="#servicios">SERVICIOS</a>
+            <a href="#pedidos">ENCARGAR</a>
+            <a href="#contacto">CONTACTO</a>
+        </nav>
+    </header>
+
+    <!-- TUS SECCIONES MANTENIENDO EL MISMO HTML -->
+    <section class="acerca" id="acerca">
+        <h2>Acerca de Nosotros</h2>
+        <p>Impresos América es una empresa fundada en 1996 por Gerardo López Gutiérrez en Atlacomulco, Estado de México,
+            dedicada a ofrecer soluciones en diseño y producción publicitaria.</p>
+        <p>Contamos con tecnología moderna y personal altamente capacitado para brindarte la mejor calidad en cada
+            proyecto.</p>
+    </section>
+
+    <section class="servicios" id="servicios">
+        <h2>Nuestros Servicios</h2>
+        <p>Ofrecemos una amplia gama de soluciones publicitarias y de personalización. Estos son nuestros principales
+            servicios:</p>
+        <div class="servicios-grid">
+            <div class="servicio-item">
+                <img src="img/sublimados.jpg" alt="Sublimados" class="servicio-img">
+                <h3>Sublimados</h3>
+                <p>Personalización en tazas, playeras, gorras, platos, entre otros.</p>
+            </div>
+            <!-- Resto de servicios igual... -->
+            <div class="servicio-item">
+                <img src="img/estampado.jpg" alt="Estampados" class="servicio-img">
+                <h3>Estampados</h3>
+                <p>Estampado textil en diferentes técnicas: serigrafía, vinil, DTG y más.</p>
+            </div>
+            <div class="servicio-item">
+                <img src="img/cortemdf.jpg" alt="Cortes en MDF" class="servicio-img">
+                <h3>Cortes en MDF</h3>
+                <p>Corte y grabado láser en MDF para letreros y souvenirs.</p>
+            </div>
+            <div class="servicio-item">
+                <img src="img/sellos.jpg" alt="Sellos" class="servicio-img">
+                <h3>Sellos</h3>
+                <p>Fabricación de sellos automáticos y personalizados.</p>
+            </div>
+            <div class="servicio-item">
+                <img src="img/lonas.jpg" alt="Lonas" class="servicio-img">
+                <h3>Lonas Publicitarias</h3>
+                <p>Impresión de lonas de gran formato.</p>
+            </div>
+            <div class="servicio-item">
+                <img src="img/anuncioled.jpg" alt="Anuncios LED" class="servicio-img">
+                <h3>Anuncios LED</h3>
+                <p>Letreros y anuncios con iluminación LED.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN ENCARGAR (igual pero con clases CSS nuevas) -->
+    <section class="pedidos" id="pedidos">
+        <h2>ENCARGAR PRODUCTOS</h2>
+        <p>¡Haz tu pedido en línea de forma rápida y sencilla!</p>
+        <div class="pedidos-opciones">
+            <div class="opcion-pedido">
+                <h3>Presupuesto Rápido</h3>
+                <p>Calcula el costo de tu proyecto en segundos</p>
+                <button onclick="mostrarSeccion('presupuesto')" class="btn-pedido">CALCULAR PRESUPUESTO</button>
+            </div>
+            <div class="opcion-pedido">
+                <h3>Hacer Pedido</h3>
+                <p>Envía los detalles y archivos de tu proyecto</p>
+                <button onclick="mostrarSeccion('pedido')" class="btn-pedido">HACER PEDIDO</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculadora y formulario (mismo HTML, ahora con CSS responsive) -->
+    <div id="seccion-presupuesto" class="seccion-funcional">
+        <h2>Calcula tu Presupuesto Rápido</h2>
+        <label><strong>Servicio:</strong></label>
+        <select id="servicioSelect" onchange="calcular()">
+            <option value="0">Selecciona un servicio...</option>
+            <option value="120">Sublimados – $120 c/u</option>
+            <option value="250">Estampados – $250 c/u</option>
+            <option value="180">Cortes en MDF – $180 c/u</option>
+            <option value="80">Sellos – $80 c/u</option>
+            <option value="650">Lonas publicitarias – $650</option>
+            <option value="1200">Anuncios LED – $1,200 c/u</option>
+        </select>
+
+        <label><strong>Cantidad:</strong></label>
+        <input type="number" id="cantidad" value="1" min="1" oninput="calcular()">
+
+        <button onclick="calcular()">CALCULAR</button>
+        <div id="resultadoPresupuesto" class="resultado"></div>
+        <button onclick="cerrarSecciones()">Cerrar calculadora</button>
+    </div>
+
+    <!-- Formulario (igual pero responsive) -->
+    <div id="seccion-pedido" class="seccion-funcional">
+        <!-- Tu formulario exacto aquí -->
+        <form action="https://formsubmit.co/americagraphics@hotmail.com" method="POST" enctype="multipart/form-data">
+            <!-- Todos los campos del formulario original -->
+            <label>Tu nombre completo:</label>
+            <input type="text" name="nombre" placeholder="Ej: Juan Pérez" required>
+
+            <label>Teléfono / WhatsApp:</label>
+            <input type="tel" name="telefono" placeholder="712 122 0806" required>
+
+            <label>Correo electrónico (opcional):</label>
+            <input type="email" name="email" placeholder="tucorreo@gmail.com">
+
+            <label>Servicio que necesitas:</label>
+            <select name="servicio">
+                <option>Sublimados</option>
+                <option>Estampados</option>
+                <option>Cortes en MDF</option>
+                <option>Sellos</option>
+                <option>Lonas Publicitarias</option>
+                <option>Anuncios LED</option>
+                <option>Otro servicio</option>
+            </select>
+
+            <label>Descripción del proyecto:</label>
+            <textarea name="descripcion" rows="5"
+                placeholder="Ej: Quiero 30 playeras blancas con mi logo en el pecho..." required></textarea>
+
+            <label>Cantidad aproximada:</label>
+            <input type="number" name="cantidad" value="1" min="1">
+
+            <label>Sube tus archivos (logo, diseño, etc.):</label>
+            <input type="file" name="archivos" accept=".jpg,.jpeg,.png,.pdf" multiple>
+            <small>Puedes subir varias imágenes o PDFs (máximo 10MB por archivo)</small>
+
+            <div class="info-pago">
+                <strong>Importante sobre el pago:</strong><br>
+                Una vez que revisemos tu pedido, te enviaremos el presupuesto final.<br>
+                Para comenzar la producción, deberás realizar el <strong>50% de pago por transferencia
+                    bancaria</strong>.<br>
+                El resto se paga contra entrega o al recoger tu pedido.
+            </div>
+
+            <input type="hidden" name="_subject" value="¡Nuevo Pedido desde la página web!">
+            <input type="hidden" name="_next" value="#pedidos">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+
+            <button type="submit">ENVIAR PEDIDO</button>
+        </form>
+        <button onclick="cerrarSecciones()">Cancelar y volver</button>
+    </div>
+
+    <!-- INFO CORREGIDA -->
+    <section class="info">
+        <div class="columna">
+            <h3>UBICACIÓN</h3>
+            <img src="img/ubicacion.png" alt="Ubicación">
+            <p>IMPRESOS AMÉRICA<br>Av. Miguel Hidalgo Nte. 24, Centro, Atlacomulco, Estado de México.</p>
+        </div>
+        <div class="columna">
+            <h3>LOCAL</h3>
+            <img src="img/entrada.jpg" alt="Entrada del local">
+            <p>A lado de la Plaza Hidalgo.</p>
+        </div>
+    </section>
+
+    <section class="contacto" id="contacto">
+        <h2>CONTACTO</h2>
+        <p>Correo: americagraphics@hotmail.com</p>
+        <p>Teléfono: +52 712 122 0806</p>
+        <div class="contacto-rapido">
+            <a href="https://wa.me/527121220806" class="btn-whatsapp" target="_blank">WhatsApp</a>
+            <a href="tel:+527121220806" class="btn-telefono">Llamar</a>
+        </div>
+    </section>
+
+    <!-- JAVASCRIPT IGUAL -->
+    <script>
+        function mostrarSeccion(seccion) {
+            document.querySelectorAll('.seccion-funcional').forEach(el => {
+                el.classList.remove('activo');
+            });
+            if (seccion === 'presupuesto') {
+                document.getElementById('seccion-presupuesto').classList.add('activo');
+            } else if (seccion === 'pedido') {
+                document.getElementById('seccion-pedido').classList.add('activo');
+            }
+            document.getElementById('pedidos').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function cerrarSecciones() {
+            document.querySelectorAll('.seccion-funcional').forEach(el => {
+                el.classList.remove('activo');
+            });
+        }
+
+        function calcular() {
+            const precio = parseFloat(document.getElementById('servicioSelect').value);
+            const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
+            const resultado = document.getElementById('resultadoPresupuesto');
+            if (precio > 0) {
+                const total = precio * cantidad;
+                resultado.innerHTML = `Presupuesto estimado: <strong>$${total.toLocaleString('es-MX')} MXN</strong>`;
+                resultado.style.color = '#28a745';
+                resultado.style.fontSize = '1.4em';
+            } else {
+                resultado.innerHTML = `Selecciona un servicio para calcular.`;
+                resultado.style.color = '#666';
+            }
+        }
+    </script>
+</body>
+
+</html>
