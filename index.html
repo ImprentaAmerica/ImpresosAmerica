@@ -326,24 +326,43 @@
         <div id="resultadoPresupuesto" class="resultado"></div>
         <button onclick="cerrarSecciones()">Cerrar calculadora</button>
     </div>
-    <div id="seccion-pedido" class="seccion-funcional">
-        <form action="https://formsubmit.co/americagraphics@hotmail.com" method="POST" enctype="multipart/form-data">
-            <label>Tu nombre completo:</label>
-            <input type="text" name="nombre" placeholder="Ej: Juan Pérez" required>
-            <label>Teléfono / WhatsApp:</label>
-            <input type="tel" name="telefono" placeholder="712 122 0806" required>
-            <label>Correo electrónico (opcional):</label>
-            <input type="email" name="email" placeholder="tucorreo@gmail.com">
-            <label>Servicio que necesitas:</label>
-            <select name="servicio">
-                <option>Sublimados</option>
-                <option>Estampados</option>
-                <option>Cortes en MDF</option>
-                <option>Sellos</option>
-                <option>Lonas Publicitarias</option>
-                <option>Anuncios LED</option>
-                <option>Otro servicio</option>
-            </select>
+<div id="seccion-pedido" class="seccion-funcional">
+  <form id="formPedido">
+    <label>Tu nombre completo:</label>
+    <input type="text" id="nombre" placeholder="Ej: Juan Pérez" required>
+    
+    <label>Teléfono / WhatsApp:</label>
+    <input type="tel" id="telefono" placeholder="712 122 0806" required>
+    
+    <label>Correo electrónico (opcional):</label>
+    <input type="email" id="email" placeholder="tucorreo@gmail.com">
+    
+    <label>Servicio que necesitas:</label>
+    <select id="servicio" required>
+      <option>Sublimados</option>
+      <option>Estampados</option>
+      <option>Cortes en MDF</option>
+      <option>Sellos</option>
+      <option>Lonas Publicitarias</option>
+      <option>Anuncios LED</option>
+    </select>
+    
+    <label>Descripción del proyecto:</label>
+    <textarea id="descripcion" rows="5" placeholder="Ej: Quiero 30 playeras blancas con mi logo..." required></textarea>
+    
+    <label>Cantidad aproximada:</label>
+    <input type="number" id="cantidad" value="1" min="1">
+    
+    <div class="info-pago">
+      <strong>Importante sobre el pago:</strong><br>
+      Una vez que revisemos tu pedido, te enviaremos el presupuesto final.<br>
+      Para comenzar la producción, deberás realizar el <strong>50% de pago por transferencia bancaria</strong>.
+    </div>
+    
+    <button type="submit">ENVIAR PEDIDO</button>
+  </form>
+  <button onclick="cerrarSecciones()">Cancelar y volver</button>
+</div>
             <label>Descripción del proyecto:</label>
             <textarea name="descripcion" rows="5"
                 placeholder="Ej: Quiero 30 playeras blancas con mi logo en el pecho..." required></textarea>
