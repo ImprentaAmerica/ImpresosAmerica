@@ -7,7 +7,11 @@
     <title>IMPRESOS AMÉRICA</title>
     <link rel="stylesheet" href="estilo.css">
 
+   
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
+        
         * {
             box-sizing: border-box;
             margin: 0;
@@ -203,6 +207,32 @@
             color: white;
         }
 
+        /* ESTILOS PARA SUPABASE */
+        .mensaje-exito {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #c3e6cb;
+            margin: 15px 0;
+            display: none;
+        }
+
+        .mensaje-error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #f5c6cb;
+            margin: 15px 0;
+            display: none;
+        }
+
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 5px;
@@ -238,6 +268,7 @@
 </head>
 
 <body>
+   
     <header>
         <h2>IMPRESOS AMÉRICA</h2>
         <nav>
@@ -248,6 +279,7 @@
             <a href="#contacto">CONTACTO</a>
         </nav>
     </header>
+
     <section class="acerca" id="acerca">
         <h2>Acerca de Nosotros</h2>
         <p>Impresos América es una empresa fundada en 1996 por Gerardo López Gutiérrez en Atlacomulco, Estado de México,
@@ -255,6 +287,7 @@
         <p>Contamos con tecnología moderna y personal altamente capacitado para brindarte la mejor calidad en cada
             proyecto.</p>
     </section>
+
     <section class="servicios" id="servicios">
         <h2>Nuestros Servicios</h2>
         <p>Ofrecemos una amplia gama de soluciones publicitarias y de personalización. Estos son nuestros principales
@@ -292,6 +325,7 @@
             </div>
         </div>
     </section>
+
     <section class="pedidos" id="pedidos">
         <h2>ENCARGAR PRODUCTOS</h2>
         <p>¡Haz tu pedido en línea de forma rápida y sencilla!</p>
@@ -301,14 +335,15 @@
                 <p>Calcula el costo de tu proyecto en segundos</p>
                 <button onclick="mostrarSeccion('presupuesto')" class="btn-pedido">CALCULAR PRESUPUESTO</button>
             </div>
-            <div id="seccion-pedido" class="seccion-funcional">
-  <form id="formPedido">
-    <button type="submit">ENVIAR PEDIDO</button>
-  </form>
-  <button onclick="cerrarSecciones()">Cancelar y volver</button>
-</div>
+            <div class="opcion-pedido">
+                <h3>Hacer Pedido</h3>
+                <p>Envía los detalles y archivos de tu proyecto</p>
+                <button onclick="mostrarSeccion('pedido')" class="btn-pedido">HACER PEDIDO</button>
+            </div>
         </div>
     </section>
+
+    <!-- Calculadora de Presupuesto -->
     <div id="seccion-presupuesto" class="seccion-funcional">
         <h2>Calcula tu Presupuesto Rápido</h2>
         <label><strong>Servicio:</strong></label>
@@ -327,51 +362,44 @@
         <div id="resultadoPresupuesto" class="resultado"></div>
         <button onclick="cerrarSecciones()">Cerrar calculadora</button>
     </div>
-<div id="seccion-pedido" class="seccion-funcional">
-  <form id="formPedido">
-    <label>Tu nombre completo:</label>
-    <input type="text" id="nombre" placeholder="Ej: Juan Pérez" required>
-    
-    <label>Teléfono / WhatsApp:</label>
-    <input type="tel" id="telefono" placeholder="712 122 0806" required>
-    
-    <label>Correo electrónico (opcional):</label>
-    <input type="email" id="email" placeholder="tucorreo@gmail.com">
-    
-    <label>Servicio que necesitas:</label>
-    <select id="servicio" required>
-      <option>Sublimados</option>
-      <option>Estampados</option>
-      <option>Cortes en MDF</option>
-      <option>Sellos</option>
-      <option>Lonas Publicitarias</option>
-      <option>Anuncios LED</option>
-    </select>
-    
-    <label>Descripción del proyecto:</label>
-    <textarea id="descripcion" rows="5" placeholder="Ej: Quiero 30 playeras blancas con mi logo..." required></textarea>
-    
-    <label>Cantidad aproximada:</label>
-    <input type="number" id="cantidad" value="1" min="1">
-    
-    <div class="info-pago">
-      <strong>Importante sobre el pago:</strong><br>
-      Una vez que revisemos tu pedido, te enviaremos el presupuesto final.<br>
-      Para comenzar la producción, deberás realizar el <strong>50% de pago por transferencia bancaria</strong>.
-    </div>
-    
-    <button type="submit">ENVIAR PEDIDO</button>
-  </form>
-  <button onclick="cerrarSecciones()">Cancelar y volver</button>
-</div>
-            <label>Descripción del proyecto:</label>
-            <textarea name="descripcion" rows="5"
+
+  
+    <div id="seccion-pedido" class="seccion-funcional">
+        <form id="formPedido">
+            <h2>Hacer Nuevo Pedido</h2>
+            
+            <label>Tu nombre completo: <span style="color:red;">*</span></label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
+            
+            <label>Teléfono / WhatsApp: <span style="color:red;">*</span></label>
+            <input type="tel" id="telefono" name="telefono" placeholder="712 122 0806" required>
+            
+            <label>Correo electrónico (opcional):</label>
+            <input type="email" id="email" name="email" placeholder="tucorreo@gmail.com">
+            
+            <label>Servicio que necesitas: <span style="color:red;">*</span></label>
+            <select id="servicio" name="servicio" required>
+                <option value="">Selecciona un servicio</option>
+                <option>Sublimados</option>
+                <option>Estampados</option>
+                <option>Cortes en MDF</option>
+                <option>Sellos</option>
+                <option>Lonas Publicitarias</option>
+                <option>Anuncios LED</option>
+                <option>Otro servicio</option>
+            </select>
+            
+            <label>Descripción del proyecto: <span style="color:red;">*</span></label>
+            <textarea id="descripcion" name="descripcion" rows="5"
                 placeholder="Ej: Quiero 30 playeras blancas con mi logo en el pecho..." required></textarea>
+            
             <label>Cantidad aproximada:</label>
-            <input type="number" name="cantidad" value="1" min="1">
+            <input type="number" id="cantidad_pedido" name="cantidad" value="1" min="1">
+            
             <label>Sube tus archivos (logo, diseño, etc.):</label>
-            <input type="file" name="archivos" accept=".jpg,.jpeg,.png,.pdf" multiple>
+            <input type="file" id="archivos" name="archivos" accept=".jpg,.jpeg,.png,.pdf" multiple>
             <small>Puedes subir varias imágenes o PDFs (máximo 10MB por archivo)</small>
+            
             <div class="info-pago">
                 <strong>Importante sobre el pago:</strong><br>
                 Una vez que revisemos tu pedido, te enviaremos el presupuesto final.<br>
@@ -379,14 +407,16 @@
                     bancaria</strong>.<br>
                 El resto se paga contra entrega o al recoger tu pedido.
             </div>
-            <input type="hidden" name="_subject" value="¡Nuevo Pedido desde la página web!">
-            <input type="hidden" name="_next" value="#pedidos">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
-            <button type="submit">ENVIAR PEDIDO</button>
+            
+            <div id="mensajeExito" class="mensaje-exito"></div>
+            <div id="mensajeError" class="mensaje-error"></div>
+            
+            <button type="submit" id="btnEnviar">ENVIAR PEDIDO</button>
+            <button type="button" onclick="cerrarSecciones()">Cancelar y volver</button>
         </form>
-        <button onclick="cerrarSecciones()">Cancelar y volver</button>
     </div>
+
+
     <section class="info">
         <div class="columna">
             <h3>UBICACIÓN</h3>
@@ -399,6 +429,7 @@
             <p>A lado de la Plaza Hidalgo.</p>
         </div>
     </section>
+
     <section class="contacto" id="contacto">
         <h2>CONTACTO</h2>
         <p>Correo: americagraphics@hotmail.com</p>
@@ -408,7 +439,14 @@
             <a href="tel:+527121220806" class="btn-telefono">Llamar</a>
         </div>
     </section>
+
     <script>
+        const SUPABASE_URL = 'https://izzldjhdiygbrhpgnhjv.supabase.co'; 
+        const SUPABASE_ANON_KEY = 'sb_publishable_8gvBl1xuxO2bd3PCkjFOfg_FvUbtISu'; 
+        
+        const supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+       
         function mostrarSeccion(seccion) {
             document.querySelectorAll('.seccion-funcional').forEach(el => {
                 el.classList.remove('activo');
@@ -425,6 +463,9 @@
             document.querySelectorAll('.seccion-funcional').forEach(el => {
                 el.classList.remove('activo');
             });
+          
+            document.getElementById('formPedido').reset();
+            limpiarMensajes();
         }
 
         function calcular() {
@@ -433,15 +474,4 @@
             const resultado = document.getElementById('resultadoPresupuesto');
             if (precio > 0) {
                 const total = precio * cantidad;
-                resultado.innerHTML = `Presupuesto estimado: <strong>$${total.toLocaleString('es-MX')} MXN</strong>`;
-                resultado.style.color = '#28a745';
-                resultado.style.fontSize = '1.4em';
-            } else {
-                resultado.innerHTML = `Selecciona un servicio para calcular.`;
-                resultado.style.color = '#666';
-            }
-        }
-    </script>
-</body>
-
-</html>
+                resultado.innerHTML = `Presupuesto estimado: <
