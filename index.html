@@ -301,11 +301,12 @@
                 <p>Calcula el costo de tu proyecto en segundos</p>
                 <button onclick="mostrarSeccion('presupuesto')" class="btn-pedido">CALCULAR PRESUPUESTO</button>
             </div>
-            <div class="opcion-pedido">
-                <h3>Hacer Pedido</h3>
-                <p>Envía los detalles y archivos de tu proyecto</p>
-                <button onclick="mostrarSeccion('pedido')" class="btn-pedido">HACER PEDIDO</button>
-            </div>
+            <div id="seccion-pedido" class="seccion-funcional">
+  <form id="formPedido">
+    <button type="submit">ENVIAR PEDIDO</button>
+  </form>
+  <button onclick="cerrarSecciones()">Cancelar y volver</button>
+</div>
         </div>
     </section>
     <div id="seccion-presupuesto" class="seccion-funcional">
